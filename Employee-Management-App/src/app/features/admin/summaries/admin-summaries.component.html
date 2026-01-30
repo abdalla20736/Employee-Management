@@ -1,0 +1,74 @@
+<div class="container-fluid mt-4">
+  <h2 class="mb-4">Summaries</h2>
+
+  <div class="card mb-3">
+    <div class="card-body">
+      <label for="week-date" class="form-label fw-semibold">Choose week (pick any day)</label>
+      <input
+        type="date"
+        id="week-date"
+        class="form-control form-control-lg w-auto"
+        [value]="selectedDate"
+        (input)="selectedDate = $any($event.target).value; onDateChange()"
+        [disabled]="isLoading"
+      />
+      <div class="mt-2 text-muted small">{{ getWeekLabel() }}</div>
+    </div>
+  </div>
+
+  @if (isLoading) {
+  <div class="text-center py-4">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  } @else {
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title mb-3">Weekly Summary</h5>
+      <div class="row g-3">
+        <div class="col-auto">
+          <div class="p-3 bg-light rounded">
+            <div class="text-muted small">Total hours</div>
+            <div class="fs-4 fw-semibold">{{ totalHours }} hours</div>
+          </div>
+        </div>
+        <div class="col-auto">
+          <div class="p-3 bg-light rounded">
+            <div class="text-muted small">Days attended</div>
+            <div class="fs-4 fw-semibold">{{ totalDaysAttended }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title mb-3">Weekly Records</h5>
+      @if (weeklyItems.length === 0) {
+      <p class="text-center text-muted mb-0">No records for this week.</p>
+      } @else {
+      <div class="table-responsive">
+        <table class="table table-hover align-middle">
+          <thead>
+            <tr>
+              <th scope="col">Week</th>
+              <th scope="col">Days attended</th>
+              <th scope="col">Hours</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ formatWeekRange(weeklyItems[0]) }}</td>
+              <td>{{ weeklyItems[0].daysAttended }}</td>
+              <td>{{ weeklyItems[0].totalHours }} h</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      }
+    </div>
+  </div>
+  }
+</div>

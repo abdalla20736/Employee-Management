@@ -1,0 +1,30 @@
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xl);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+h2::before {
+  content: '';
+  width: 4px;
+  height: 2rem;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  border-radius: var(--radius-full);
+}
+
+.card {
+  border: none;
+  box-shadow: var(--shadow-md);
+}
+
+.list-group-item {
+  border-color: var(--border-color, #eee);
+}
+
+.spinner-border {
+  color: var(--primary-color);
+}

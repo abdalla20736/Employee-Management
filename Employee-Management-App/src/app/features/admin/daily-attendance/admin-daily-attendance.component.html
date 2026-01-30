@@ -1,0 +1,55 @@
+<div class="container-fluid mt-4">
+  <h2 class="mb-4">Daily Attendance</h2>
+
+  <div class="card mb-3">
+    <div class="card-body">
+      <label for="daily-date" class="form-label fw-semibold">Select date</label>
+      <input
+        type="date"
+        id="daily-date"
+        class="form-control form-control-lg w-auto"
+        [value]="selectedDate"
+        (input)="selectedDate = $any($event.target).value; onDateChange()"
+        [disabled]="isLoading"
+      />
+    </div>
+  </div>
+
+  @if (isLoading) {
+    <div class="text-center py-4">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  } @else {
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title mb-3">Employees who checked in on {{ getSelectedDateLabel() }}</h5>
+        @if (dailyItems.length === 0) {
+          <p class="text-center text-muted mb-0">No check-ins for this day.</p>
+        } @else {
+          <div class="table-responsive">
+            <table class="table table-hover align-middle">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Employee name</th>
+                  <th scope="col">Check-in time</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (item of dailyItems; track item.id; let i = $index) {
+                  <tr>
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ getEmployeeName(item) }}</td>
+                    <td>{{ formatCheckInTime(item) }}</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</div>

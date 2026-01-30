@@ -1,0 +1,72 @@
+<div class="login-container">
+  <div class="row form-bg">
+    <div class="col-12 col-md-7 image-side"></div>
+    <div class="col-12 col-md-5 form-side">
+      <div class="row justify-content-center align-items-center min-vh-100">
+        <div class="card shadow">
+          <div class="card-body p-5">
+            <h2 class="card-title text-center mb-4">Employee Management</h2>
+            <h5 class="text-center text-muted mb-4">Sign In</h5>
+
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+              <div class="mb-3">
+                <label for="userName" class="form-label">User Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="userName"
+                  formControlName="userName"
+                  [class.is-invalid]="userName?.invalid && userName?.touched"
+                  placeholder="Enter your User Name"
+                />
+                @if (userName?.invalid && userName?.touched) {
+                  <div class="invalid-feedback">
+                    @if (userName?.errors?.['required']) {
+                      <div>User Name is required</div>
+                    }
+                  </div>
+                }
+              </div>
+
+              <div class="mb-4">
+                <label for="password" class="form-label">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  formControlName="password"
+                  [class.is-invalid]="password?.invalid && password?.touched"
+                  placeholder="Enter your password"
+                />
+                @if (password?.invalid && password?.touched) {
+                  <div class="invalid-feedback">
+                    @if (password?.errors?.['required']) {
+                      <div>Password is required</div>
+                    }
+                    @if (password?.errors?.['minlength']) {
+                      <div>
+                        Password must be at least 8 characters long and contain at least one
+                        uppercase and one lowercase letter
+                      </div>
+                    }
+                  </div>
+                }
+              </div>
+
+              <button type="submit" class="btn btn-primary w-100 mb-3" [disabled]="isLoading">
+                @if (isLoading) {
+                  <span
+                    class="spinner-border spinner-border-sm me-2"
+                    role="status"
+                    aria-hidden="true"
+                  ></span>
+                }
+                Sign In
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

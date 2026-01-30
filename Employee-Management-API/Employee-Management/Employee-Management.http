@@ -1,0 +1,10 @@
+@Employee_Management_HostAddress = http://localhost:5252
+
+GET {{Employee_Management_HostAddress}}/weatherforecast/
+
+
+
+POST {{Employee_Management_HostAddress}}/attendance/check-in
+Accept: application/json
+
+###

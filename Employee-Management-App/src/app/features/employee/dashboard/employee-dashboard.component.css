@@ -1,0 +1,129 @@
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xl);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+h2::before {
+  content: '';
+  width: 4px;
+  height: 2rem;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  border-radius: var(--radius-full);
+}
+
+@media (max-width: 768px) {
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
+.card {
+  transition: all var(--transition-base);
+  height: 100%;
+  border: none;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
+
+.card-body {
+  padding: var(--spacing-xl);
+}
+
+@media (max-width: 768px) {
+  .card-body {
+    padding: var(--spacing-lg);
+  }
+}
+
+.card-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.card-text {
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.card.text-white .card-body {
+  padding: var(--spacing-xl);
+  position: relative;
+  z-index: 1;
+}
+
+.card.text-white .card-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.9;
+  margin-bottom: var(--spacing-md);
+  color: var(--text-inverse);
+}
+
+.card.text-white h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0;
+  color: var(--text-inverse);
+}
+
+.card.text-white h2::before {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .card.text-white h2 {
+    font-size: 2rem;
+  }
+
+  .card.text-white .card-body {
+    padding: var(--spacing-lg);
+  }
+}
+
+.d-flex.gap-2 {
+  gap: var(--spacing-md) !important;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 576px) {
+  .d-flex.gap-2 {
+    flex-direction: column;
+  }
+
+  .d-flex.gap-2 .btn {
+    width: 100%;
+  }
+}
+
+.btn-info {
+  background: linear-gradient(135deg, var(--info-color) 0%, #0891b2 100%);
+  color: var(--text-inverse);
+  border: none;
+}
+
+.btn-info:hover {
+  background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+  color: var(--text-inverse);
+}
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+  border-width: 0.25em;
+  color: var(--primary-color);
+  margin: var(--spacing-2xl) 0;
+}

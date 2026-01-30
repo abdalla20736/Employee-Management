@@ -1,0 +1,44 @@
+<div class="container-fluid mt-4">
+  <h2 class="mb-4">Employee Dashboard</h2>
+
+  @if (currentUser$ | async; as user) {
+  <div class="row mb-4">
+    <div class="col-md-8 mx-auto">
+      <div class="card">
+        <div class="card-body text-center">
+          <h3 class="">Welcome, {{ user.firstName }} {{ user.lastName }}!</h3>
+          <h5 class="card-title mb-4">Daily Check-In</h5>
+          <div class="display-4 mb-4">
+            {{ currentTime | date : 'shortTime' }}
+          </div>
+          <div class="mb-4">
+            <p class="lead">{{ currentTime | date : 'fullDate' }}</p>
+          </div>
+
+          <div class="alert alert-warning">
+            <strong
+              >Check-in window has closed. Check-in is only available between 7:30 AM and 9:00
+              AM.</strong
+            >
+          </div>
+
+          <button
+            class="btn btn-primary btn-lg mt-3"
+            (click)="performCheckIn()"
+            [disabled]="!canCheckIn || isCheckingIn"
+          >
+            Check In
+          </button>
+
+          <div class="mt-4">
+            <small class="text-muted">
+              <strong>Check-in Window:</strong> 7:30 AM - 9:00 AM<br />
+              <strong>Note:</strong> You can only check in once per day.
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+</div>

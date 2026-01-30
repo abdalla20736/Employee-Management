@@ -1,0 +1,117 @@
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xl);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+h2::before {
+  content: '';
+  width: 4px;
+  height: 2rem;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  border-radius: var(--radius-full);
+}
+
+@media (max-width: 768px) {
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
+.card {
+  transition: all var(--transition-base);
+  cursor: pointer;
+  height: 100%;
+  border: none;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
+
+.card.text-white .card-body {
+  padding: var(--spacing-xl);
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .card.text-white .card-body {
+    padding: var(--spacing-lg);
+  }
+}
+
+.card.text-white .card-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.9;
+  margin-bottom: var(--spacing-md);
+}
+
+.card.text-white h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0;
+  color: var(--text-inverse);
+}
+
+@media (max-width: 768px) {
+  .card.text-white h2 {
+    font-size: 2rem;
+  }
+}
+
+.card.text-white h2::before {
+  display: none;
+}
+
+.card:not(.text-white) {
+  background: var(--bg-primary);
+  border-radius: var(--radius-xl);
+}
+
+.card:not(.text-white) .card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.card:not(.text-white) .card-title::before {
+  content: '⚡';
+  font-size: 1.5rem;
+}
+
+.d-flex.gap-2 {
+  gap: var(--spacing-md) !important;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 576px) {
+  .d-flex.gap-2 {
+    flex-direction: column;
+  }
+
+  .d-flex.gap-2 .btn {
+    width: 100%;
+  }
+}
+
+.text-center .spinner-border {
+  width: 3rem;
+  height: 3rem;
+  border-width: 0.25em;
+  color: var(--primary-color);
+  margin: var(--spacing-2xl) 0;
+}

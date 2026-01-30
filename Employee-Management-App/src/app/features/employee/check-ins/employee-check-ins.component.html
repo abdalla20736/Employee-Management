@@ -1,0 +1,41 @@
+<div class="container-fluid mt-4">
+  <h2 class="mb-4">Last check-in times</h2>
+
+  @if (isLoading) {
+  <div class="text-center py-5">
+    <div class="spinner-border" role="status"></div>
+    <p class="mt-2 text-muted">Loading check-in history...</p>
+  </div>
+  } @else if (errorMessage) {
+  <div class="alert alert-warning" role="alert">
+    {{ errorMessage }}
+    <button type="button" class="btn btn-sm btn-outline-warning ms-2" (click)="loadIfReady()">
+      Retry
+    </button>
+  </div>
+  } @else if (lastCheckInTimes.length === 0) {
+  <div class="card">
+    <div class="card-body text-center text-muted py-5">
+      <p class="mb-0">No check-in history yet.</p>
+    </div>
+  </div>
+  } @else {
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title mb-3">Your recent check-ins</h5>
+          <ul class="list-group list-group-flush">
+            @for (record of lastCheckInTimes; track record.id) {
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <span>{{ formatCheckInTime(record.checkInTime) }}</span>
+              <span class="badge bg-secondary rounded-pill">#{{ record.id }}</span>
+            </li>
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+</div>

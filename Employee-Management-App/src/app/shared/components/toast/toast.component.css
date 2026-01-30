@@ -1,0 +1,132 @@
+.toast-container {
+  position: fixed;
+  top: var(--spacing-xl);
+  right: var(--spacing-xl);
+  z-index: var(--z-toast);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  max-width: 400px;
+}
+
+@media (max-width: 768px) {
+  .toast-container {
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    left: var(--spacing-md);
+    max-width: 100%;
+  }
+}
+
+.toast {
+  min-width: 300px;
+  max-width: 100%;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  border: none;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.98);
+  animation: slideInRight 0.3s ease-out;
+  overflow: hidden;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.toast-header {
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--gray-200);
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.toast-body {
+  padding: var(--spacing-lg);
+  color: var(--text-primary);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.toast.showing {
+  animation: slideInRight 0.3s ease-out;
+}
+
+.toast.hiding {
+  animation: slideOutRight 0.3s ease-out;
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.btn-close {
+  opacity: 0.5;
+  transition: opacity var(--transition-fast);
+  padding: var(--spacing-sm);
+}
+
+.btn-close:hover {
+  opacity: 1;
+}
+
+.toast-success {
+  border-left: 4px solid var(--success-color);
+}
+
+.toast-success .toast-header {
+  color: var(--success-color);
+}
+
+.toast-error {
+  border-left: 4px solid var(--danger-color);
+}
+
+.toast-error .toast-header {
+  color: var(--danger-color);
+}
+
+.toast-warning {
+  border-left: 4px solid var(--warning-color);
+}
+
+.toast-warning .toast-header {
+  color: var(--warning-color);
+}
+
+.toast-info {
+  border-left: 4px solid var(--info-color);
+}
+
+.toast-info .toast-header {
+  color: var(--info-color);
+}
+
+@media (max-width: 768px) {
+  .toast {
+    min-width: 100%;
+  }
+
+  .toast-header,
+  .toast-body {
+    padding: var(--spacing-md);
+  }
+}

@@ -1,0 +1,83 @@
+<div class="container-fluid mt-4">
+  <h2 class="mb-4">My Profile</h2>
+
+  @if (isLoading) {
+    <div class="text-center">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  } @else if (user) {
+    <div class="row g-3">
+      <div class="col-12 col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title mb-4">Personal Information</h5>
+            <table class="table table-borderless">
+              <tr>
+                <th width="40%">First Name:</th>
+                <td>{{ user.firstName }}</td>
+              </tr>
+              <tr>
+                <th>Last Name:</th>
+                <td>{{ user.lastName }}</td>
+              </tr>
+              <tr>
+                <th>Phone Number:</th>
+                <td>{{ user.phoneNumber }}</td>
+              </tr>
+              <tr>
+                <th>National ID:</th>
+                <td>{{ user.nationalId }}</td>
+              </tr>
+              <tr>
+                <th>Age:</th>
+                <td>{{ user.age }}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title mb-4">Electronic Signature</h5>
+            @if (user.electronicSignature) {
+              <div class="mb-3">
+                <img
+                  [src]="signatureImageUrl"
+                  alt="Signature"
+                  class="img-fluid border rounded p-2"
+                  style="max-height: 200px"
+                />
+              </div>
+              <p class="text-muted">Signature already exists. You can update it below.</p>
+            } @else {
+              <p class="text-warning">No signature found. Please add your signature.</p>
+            }
+
+            <app-signature
+              [signature]="signatureImageUrlForCanvas"
+              (signatureChange)="onSignatureChange($event)"
+              (signatureFileChange)="onSignatureFileChange($event)"
+              (signatureExportError)="onSignatureExportError($event)"
+            >
+            </app-signature>
+
+            <button
+              class="btn btn-primary mt-3"
+              (click)="saveSignature()"
+              [disabled]="isSavingSignature || !signatureFile"
+            >
+              @if (isSavingSignature) {
+                <span class="spinner-border spinner-border-sm me-2"></span>
+              }
+              {{ user.electronicSignature ? 'Update' : 'Save' }} Signature
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>

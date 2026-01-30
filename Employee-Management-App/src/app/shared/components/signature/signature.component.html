@@ -1,0 +1,33 @@
+<div class="signature-container">
+  <div class="mb-3">
+    <label class="form-label">Electronic Signature</label>
+    <div class="border rounded p-3 bg-white">
+      <canvas
+        #canvas
+        width="400"
+        height="200"
+        (mousedown)="startDrawing($event)"
+        (mousemove)="draw($event)"
+        (mouseup)="stopDrawing()"
+        (mouseleave)="stopDrawing()"
+        (touchstart)="startDrawing($event)"
+        (touchmove)="draw($event)"
+        (touchend)="stopDrawing()"
+        class="signature-canvas"
+      >
+      </canvas>
+    </div>
+    <div class="mt-2 d-flex gap-2 flex-wrap">
+      <button type="button" class="btn btn-sm btn-outline-danger" (click)="clear()">Clear</button>
+      <label class="btn btn-sm btn-outline-primary mb-0">
+        Upload Image
+        <input
+          type="file"
+          accept="image/*"
+          (change)="onFileSelected($event)"
+          style="display: none"
+        />
+      </label>
+    </div>
+  </div>
+</div>

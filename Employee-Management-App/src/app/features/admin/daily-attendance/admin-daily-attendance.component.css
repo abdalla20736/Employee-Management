@@ -1,0 +1,137 @@
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xl);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+h2::before {
+  content: '';
+  width: 4px;
+  height: 2rem;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  border-radius: var(--radius-full);
+}
+
+@media (max-width: 768px) {
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
+.card {
+  background: var(--bg-primary);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  border: none;
+  margin-bottom: var(--spacing-xl);
+}
+
+.card-body {
+  padding: var(--spacing-xl);
+}
+
+@media (max-width: 768px) {
+  .card-body {
+    padding: var(--spacing-lg);
+  }
+}
+
+.form-label {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-sm);
+  font-size: 0.875rem;
+}
+
+.form-control {
+  padding: 0.875rem 1rem;
+  font-size: 0.9375rem;
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--gray-200);
+  transition: all var(--transition-base);
+}
+
+.form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+  transform: translateY(-1px);
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.card-title::before {
+  content: '📋';
+  font-size: 1.5rem;
+}
+
+.table {
+  margin-bottom: 0;
+}
+
+.table th {
+  padding: var(--spacing-lg) var(--spacing-md);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: var(--text-primary);
+  background-color: var(--bg-secondary);
+  border-bottom: 2px solid var(--gray-200);
+}
+
+.table td {
+  padding: var(--spacing-lg) var(--spacing-md);
+  border-bottom: 1px solid var(--gray-100);
+  color: var(--text-secondary);
+}
+
+.table tbody tr {
+  transition: all var(--transition-fast);
+}
+
+.table tbody tr:hover {
+  background-color: var(--bg-secondary);
+  transform: scale(1.01);
+}
+
+.table-responsive {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .table {
+    font-size: 0.875rem;
+  }
+
+  .table th,
+  .table td {
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+}
+
+.text-center {
+  padding: var(--spacing-2xl);
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+  border-width: 0.25em;
+  color: var(--primary-color);
+  margin: var(--spacing-2xl) 0;
+}
