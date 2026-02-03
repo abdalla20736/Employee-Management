@@ -76,7 +76,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
     this.queryParamsSub = this.route.queryParams
       .pipe(
         skip(1),
-        filter(() => !this.skipNextQueryParamsLoad)
+        filter(() => !this.skipNextQueryParamsLoad),
       )
       .subscribe((params) => {
         this.syncStateFromQueryParams(params);
@@ -166,7 +166,7 @@ export class EmployeeListComponent implements OnInit, OnDestroy {
         finalize(() => {
           this.isLoading = false;
           this.cdr.detectChanges();
-        })
+        }),
       )
       .subscribe({
         next: (response) => {

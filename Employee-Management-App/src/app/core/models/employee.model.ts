@@ -5,7 +5,6 @@ export interface Employee {
   lastName: string;
   phoneNumber: string;
   nationalId?: string;
-  nationalID?: string;
   age: number;
   electronicSignature?: string;
   email?: string;
@@ -16,7 +15,7 @@ export interface EmployeeCreateRequest {
   firstName: string;
   lastName: string;
   phoneNumber: string;
-  nationalID: string;
+  nationalId: string;
   age: number;
   electronicSignature?: string;
   password: string;
@@ -27,7 +26,7 @@ export interface EmployeeUpdateRequest {
   firstName?: string;
   lastName?: string;
   phoneNumber?: string;
-  nationalID?: string;
+  nationalId?: string;
   age?: number;
   electronicSignature?: string;
   password?: string;

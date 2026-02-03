@@ -2,240 +2,252 @@
   <h2 class="mb-4">{{ isEditMode ? 'Edit Employee' : 'Add New Employee' }}</h2>
 
   @if (isEditMode && loadingEmployee) {
-  <div class="text-center py-5">
-    <div class="spinner-border" role="status">
-      <span class="visually-hidden">Loading...</span>
+    <div class="text-center py-5">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <p class="mt-2 text-muted">Loading employee...</p>
     </div>
-    <p class="mt-2 text-muted">Loading employee...</p>
-  </div>
   } @else {
-  <div class="card">
-    <div class="card-body">
-      <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
-        <div class="row g-3">
-          @if (!isEditMode) {
-          <div class="col-12 col-md-6 mb-3">
-            <label for="userName" class="form-label"
-              >User Name <span class="text-danger">*</span></label
-            >
-            <input
-              type="text"
-              class="form-control"
-              id="userName"
-              formControlName="userName"
-              [class.is-invalid]="userName?.invalid && userName?.touched"
-            />
-            @if (userName?.invalid && userName?.touched) {
-            <div class="invalid-feedback">
-              @if (userName?.errors?.['required']) {
-              <div>User name is required</div>
-              } @if (userName?.errors?.['minlength']) {
-              <div>User name must be at least 2 characters</div>
-              }
-            </div>
-            }
-          </div>
-          }
-
-          <div class="col-12 col-md-6 mb-3">
-            <label for="firstName" class="form-label"
-              >First Name <span class="text-danger">*</span></label
-            >
-            <input
-              type="text"
-              class="form-control"
-              id="firstName"
-              formControlName="firstName"
-              [class.is-invalid]="firstName?.invalid && firstName?.touched"
-            />
-            @if (firstName?.invalid && firstName?.touched) {
-            <div class="invalid-feedback">
-              @if (firstName?.errors?.['required']) {
-              <div>First name is required</div>
-              } @if (firstName?.errors?.['minlength']) {
-              <div>First name must be at least 2 characters</div>
-              }
-            </div>
-            }
-          </div>
-
-          <div class="col-12 col-md-6 mb-3">
-            <label for="lastName" class="form-label"
-              >Last Name <span class="text-danger">*</span></label
-            >
-            <input
-              type="text"
-              class="form-control"
-              id="lastName"
-              formControlName="lastName"
-              [class.is-invalid]="lastName?.invalid && lastName?.touched"
-            />
-            @if (lastName?.invalid && lastName?.touched) {
-            <div class="invalid-feedback">
-              @if (lastName?.errors?.['required']) {
-              <div>Last name is required</div>
-              } @if (lastName?.errors?.['minlength']) {
-              <div>Last name must be at least 2 characters</div>
-              }
-            </div>
-            }
-          </div>
-        </div>
-
-        <div class="row g-3">
-          <div class="col-12 col-md-6 mb-3">
-            <label for="phoneNumber" class="form-label"
-              >Phone Number <span class="text-danger">*</span></label
-            >
-            <input
-              type="tel"
-              class="form-control"
-              id="phoneNumber"
-              formControlName="phoneNumber"
-              [class.is-invalid]="phoneNumber?.invalid && phoneNumber?.touched"
-            />
-            @if (phoneNumber?.invalid && phoneNumber?.touched) {
-            <div class="invalid-feedback">
-              @if (phoneNumber?.errors?.['required']) {
-              <div>Phone number is required</div>
-              } @if (phoneNumber?.errors?.['pattern']) {
-              <div>Please enter a valid phone number</div>
-              }
-            </div>
-            }
-          </div>
-
-          <div class="col-12 col-md-6 mb-3">
-            <label for="nationalID" class="form-label"
-              >National ID <span class="text-danger">*</span></label
-            >
-            <input
-              type="text"
-              class="form-control"
-              id="nationalID"
-              formControlName="nationalID"
-              maxlength="14"
-              [class.is-invalid]="nationalID?.invalid && nationalID?.touched"
-            />
-            @if (nationalID?.invalid && nationalID?.touched) {
-            <div class="invalid-feedback">
-              @if (nationalID?.errors?.['required']) {
-              <div>National ID is required</div>
-              } @if (nationalID?.errors?.['pattern']) {
-              <div>National ID must contain only numbers</div>
-              } @if (nationalID?.errors?.['minlength'] || nationalID?.errors?.['maxlength']) {
-              <div>National ID must be exactly 14 digits</div>
-              }
-            </div>
-            }
-          </div>
-        </div>
-
-        <div class="row g-3">
-          <div class="col-12 col-md-6 mb-3">
-            <label for="age" class="form-label">Age <span class="text-danger">*</span></label>
-            <input
-              type="number"
-              class="form-control"
-              id="age"
-              formControlName="age"
-              min="18"
-              max="100"
-              [class.is-invalid]="age?.invalid && age?.touched"
-            />
-            @if (age?.invalid && age?.touched) {
-            <div class="invalid-feedback">
-              @if (age?.errors?.['required']) {
-              <div>Age is required</div>
-              } @if (age?.errors?.['min'] || age?.errors?.['max']) {
-              <div>Age must be between 18 and 100</div>
-              }
-            </div>
-            }
-          </div>
-
-          <div class="col-12 col-md-6 mb-3">
-            <label for="password" class="form-label">
-              Password @if (!isEditMode) {
-              <span class="text-danger">*</span>
-              }
-            </label>
-            <input
-              type="password"
-              class="form-control"
-              id="password"
-              formControlName="password"
-              [placeholder]="isEditMode ? 'Leave blank to keep current' : ''"
-              [class.is-invalid]="password?.invalid && password?.touched"
-            />
-            @if (password?.invalid && password?.touched) {
-            <div class="invalid-feedback">
-              @if (password?.errors?.['required']) {
-              <div>Password is required</div>
-              } @if (password?.errors?.['minlength'] || password?.errors?.['pattern']) {
-              <div>
-                Password must be at least 8 characters long and contain at least one uppercase and
-                one lowercase letter.
+    <div class="card">
+      <div class="card-body">
+        <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+          <div class="row g-3">
+            @if (!isEditMode) {
+              <div class="col-12 col-md-6 mb-3">
+                <label for="userName" class="form-label"
+                  >User Name <span class="text-danger">*</span></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="userName"
+                  formControlName="userName"
+                  [class.is-invalid]="userName?.invalid && userName?.touched"
+                />
+                @if (userName?.invalid && userName?.touched) {
+                  <div class="invalid-feedback">
+                    @if (userName?.errors?.['required']) {
+                      <div>User name is required</div>
+                    }
+                    @if (userName?.errors?.['minlength']) {
+                      <div>User name must be at least 2 characters</div>
+                    }
+                  </div>
+                }
               </div>
+            }
+
+            <div class="col-12 col-md-6 mb-3">
+              <label for="firstName" class="form-label"
+                >First Name <span class="text-danger">*</span></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="firstName"
+                formControlName="firstName"
+                [class.is-invalid]="firstName?.invalid && firstName?.touched"
+              />
+              @if (firstName?.invalid && firstName?.touched) {
+                <div class="invalid-feedback">
+                  @if (firstName?.errors?.['required']) {
+                    <div>First name is required</div>
+                  }
+                  @if (firstName?.errors?.['minlength']) {
+                    <div>First name must be at least 2 characters</div>
+                  }
+                </div>
               }
             </div>
-            } @if (isEditMode) {
-            <div class="form-text">Leave blank to keep the current password.</div>
-            }
+
+            <div class="col-12 col-md-6 mb-3">
+              <label for="lastName" class="form-label"
+                >Last Name <span class="text-danger">*</span></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="lastName"
+                formControlName="lastName"
+                [class.is-invalid]="lastName?.invalid && lastName?.touched"
+              />
+              @if (lastName?.invalid && lastName?.touched) {
+                <div class="invalid-feedback">
+                  @if (lastName?.errors?.['required']) {
+                    <div>Last name is required</div>
+                  }
+                  @if (lastName?.errors?.['minlength']) {
+                    <div>Last name must be at least 2 characters</div>
+                  }
+                </div>
+              }
+            </div>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-12 col-md-6 mb-3">
+              <label for="phoneNumber" class="form-label"
+                >Phone Number <span class="text-danger">*</span></label
+              >
+              <input
+                type="tel"
+                class="form-control"
+                id="phoneNumber"
+                formControlName="phoneNumber"
+                [class.is-invalid]="phoneNumber?.invalid && phoneNumber?.touched"
+              />
+              @if (phoneNumber?.invalid && phoneNumber?.touched) {
+                <div class="invalid-feedback">
+                  @if (phoneNumber?.errors?.['required']) {
+                    <div>Phone number is required</div>
+                  }
+                  @if (phoneNumber?.errors?.['pattern']) {
+                    <div>Please enter a valid phone number</div>
+                  }
+                </div>
+              }
+            </div>
+
+            <div class="col-12 col-md-6 mb-3">
+              <label for="nationalId" class="form-label"
+                >National ID <span class="text-danger">*</span></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="nationalId"
+                formControlName="nationalId"
+                maxlength="14"
+                [class.is-invalid]="nationalId?.invalid && nationalId?.touched"
+              />
+              @if (nationalId?.invalid && nationalId?.touched) {
+                <div class="invalid-feedback">
+                  @if (nationalId?.errors?.['required']) {
+                    <div>National ID is required</div>
+                  }
+                  @if (nationalId?.errors?.['pattern']) {
+                    <div>National ID must contain only numbers</div>
+                  }
+                  @if (nationalId?.errors?.['minlength'] || nationalId?.errors?.['maxlength']) {
+                    <div>National ID must be exactly 14 digits</div>
+                  }
+                </div>
+              }
+            </div>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-12 col-md-6 mb-3">
+              <label for="age" class="form-label">Age <span class="text-danger">*</span></label>
+              <input
+                type="number"
+                class="form-control"
+                id="age"
+                formControlName="age"
+                min="18"
+                max="100"
+                [class.is-invalid]="age?.invalid && age?.touched"
+              />
+              @if (age?.invalid && age?.touched) {
+                <div class="invalid-feedback">
+                  @if (age?.errors?.['required']) {
+                    <div>Age is required</div>
+                  }
+                  @if (age?.errors?.['min'] || age?.errors?.['max']) {
+                    <div>Age must be between 18 and 100</div>
+                  }
+                </div>
+              }
+            </div>
+
+            <div class="col-12 col-md-6 mb-3">
+              <label for="password" class="form-label">
+                Password
+                @if (!isEditMode) {
+                  <span class="text-danger">*</span>
+                }
+              </label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                formControlName="password"
+                [placeholder]="isEditMode ? 'Leave blank to keep current' : ''"
+                [class.is-invalid]="password?.invalid && password?.touched"
+              />
+              @if (password?.invalid && password?.touched) {
+                <div class="invalid-feedback">
+                  @if (password?.errors?.['required']) {
+                    <div>Password is required</div>
+                  }
+                  @if (password?.errors?.['minlength'] || password?.errors?.['pattern']) {
+                    <div>
+                      Password must be at least 8 characters long and contain at least one uppercase
+                      and one lowercase letter.
+                    </div>
+                  }
+                </div>
+              }
+              @if (isEditMode) {
+                <div class="form-text">Leave blank to keep the current password.</div>
+              }
+            </div>
+          </div>
+
+          <div class="d-flex flex-column flex-md-row gap-2">
+            <button type="submit" class="btn btn-primary w-100 w-md-auto" [disabled]="isLoading">
+              @if (isLoading) {
+                <span class="spinner-border spinner-border-sm me-2"></span>
+              }
+              {{ isEditMode ? 'Update' : 'Create' }} Employee
+            </button>
+            <a routerLink="/admin/employees" class="btn btn-secondary w-100 w-md-auto">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    @if (isEditMode && employeeId) {
+      <div class="card mt-4">
+        <div class="card-body">
+          <h5 class="card-title mb-3">Update signature</h5>
+          <p class="text-muted small mb-3">
+            Draw on the canvas or upload an image. The signature is converted to a file and sent
+            when you click Upload.
+          </p>
+          @if (savedSignature) {
+            <div class="mb-3">
+              <span class="form-label d-block">Current signature</span>
+              <img
+                [src]="savedSignatureImageUrl"
+                alt="Current signature"
+                class="img-thumbnail"
+                style="max-height: 120px"
+              />
+            </div>
+          }
+          <app-signature
+            [signature]="''"
+            (signatureChange)="onSignatureChange($event)"
+            (signatureFileChange)="onSignatureFileChange($event)"
+            (signatureExportError)="onSignatureExportError($event)"
+          />
+          <div class="mt-2">
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="uploadSignatureFile()"
+              [disabled]="!signatureFile || uploadingSignature"
+            >
+              @if (uploadingSignature) {
+                <span class="spinner-border spinner-border-sm me-2"></span>
+              }
+              Upload signature
+            </button>
           </div>
         </div>
-
-        <div class="d-flex flex-column flex-md-row gap-2">
-          <button type="submit" class="btn btn-primary w-100 w-md-auto" [disabled]="isLoading">
-            @if (isLoading) {
-            <span class="spinner-border spinner-border-sm me-2"></span>
-            }
-            {{ isEditMode ? 'Update' : 'Create' }} Employee
-          </button>
-          <a routerLink="/admin/employees" class="btn btn-secondary w-100 w-md-auto">Cancel</a>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  @if (isEditMode && employeeId) {
-  <div class="card mt-4">
-    <div class="card-body">
-      <h5 class="card-title mb-3">Update signature</h5>
-      <p class="text-muted small mb-3">
-        Draw on the canvas or upload an image. The signature is converted to a file and sent when
-        you click Upload.
-      </p>
-      @if (savedSignature) {
-      <div class="mb-3">
-        <span class="form-label d-block">Current signature</span>
-        <img
-          [src]="savedSignatureImageUrl"
-          alt="Current signature"
-          class="img-thumbnail"
-          style="max-height: 120px"
-        />
       </div>
-      }
-      <app-signature
-        [signature]="''"
-        (signatureChange)="onSignatureChange($event)"
-        (signatureFileChange)="onSignatureFileChange($event)"
-        (signatureExportError)="onSignatureExportError($event)"
-      />
-      <div class="mt-2">
-        <button
-          type="button"
-          class="btn btn-primary"
-          (click)="uploadSignatureFile()"
-          [disabled]="!signatureFile || uploadingSignature"
-        >
-          @if (uploadingSignature) {
-          <span class="spinner-border spinner-border-sm me-2"></span>
-          } Upload signature
-        </button>
-      </div>
-    </div>
-  </div>
-  } }
+    }
+  }
 </div>

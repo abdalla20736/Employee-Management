@@ -53,7 +53,7 @@ export class EmployeeFormComponent implements OnInit {
       firstName: ['', [Validators.required, Validators.minLength(2)]],
       lastName: ['', [Validators.required, Validators.minLength(2)]],
       phoneNumber: ['', [Validators.required, Validators.pattern(/^[0-9+\-\s()]+$/)]],
-      nationalID: [
+      nationalId: [
         '',
         [
           Validators.required,
@@ -95,7 +95,7 @@ export class EmployeeFormComponent implements OnInit {
         finalize(() => {
           this.loadingEmployee = false;
           this.cdr.markForCheck();
-        })
+        }),
       )
       .subscribe({
         next: (response) => {
@@ -105,7 +105,6 @@ export class EmployeeFormComponent implements OnInit {
             firstName?: string;
             lastName?: string;
             phoneNumber?: string;
-            nationalID?: string;
             nationalId?: string;
             age?: number;
             electronicSignature?: string;
@@ -115,7 +114,7 @@ export class EmployeeFormComponent implements OnInit {
             firstName: e.firstName ?? '',
             lastName: e.lastName ?? '',
             phoneNumber: e.phoneNumber ?? '',
-            nationalID: e.nationalID ?? e.nationalId ?? '',
+            nationalId: e.nationalId ?? e.nationalId ?? '',
             age: e.age ?? '',
             password: '',
           });
@@ -137,7 +136,7 @@ export class EmployeeFormComponent implements OnInit {
         firstName: raw.firstName,
         lastName: raw.lastName,
         phoneNumber: raw.phoneNumber,
-        nationalID: raw.nationalID,
+        nationalId: raw.nationalId,
         age: raw.age,
         electronicSignature: this.signature || undefined,
         password: raw.password || '',
@@ -148,7 +147,7 @@ export class EmployeeFormComponent implements OnInit {
           firstName: raw.firstName,
           lastName: raw.lastName,
           phoneNumber: raw.phoneNumber,
-          nationalID: raw.nationalID,
+          nationalId: raw.nationalId,
           age: raw.age,
         };
         if (raw.password?.trim()) updateData.password = raw.password;
@@ -174,7 +173,7 @@ export class EmployeeFormComponent implements OnInit {
           firstName: formData.firstName,
           lastName: formData.lastName,
           phoneNumber: formData.phoneNumber,
-          nationalID: formData.nationalID,
+          nationalId: formData.nationalId,
           age: formData.age,
           password: formData.password,
         };
@@ -195,14 +194,14 @@ export class EmployeeFormComponent implements OnInit {
                   catchError(() => {
                     this.toastService.error('Employee created but signature upload failed');
                     return of(null);
-                  })
+                  }),
                 );
               }
               return of(true);
             }),
             finalize(() => {
               this.isLoading = false;
-            })
+            }),
           )
           .subscribe({
             next: () => {
@@ -304,8 +303,8 @@ export class EmployeeFormComponent implements OnInit {
     return this.employeeForm.get('userName');
   }
 
-  get nationalID() {
-    return this.employeeForm.get('nationalID');
+  get nationalId() {
+    return this.employeeForm.get('nationalId');
   }
 
   get password() {

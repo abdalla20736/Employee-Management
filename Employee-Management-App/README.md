@@ -622,7 +622,7 @@ Content-Type: application/json
   "firstName": "string",
   "lastName": "string",
   "phoneNumber": "string",
-  "nationalID": "string",
+  "nationalId": "string",
   "age": number,
   "password": "string"
 }
@@ -640,7 +640,7 @@ Content-Type: application/json
   "firstName": "string" (optional),
   "lastName": "string" (optional),
   "phoneNumber": "string" (optional),
-  "nationalID": "string" (optional),
+  "nationalId": "string" (optional),
   "age": number (optional),
   "password": "string" (optional)
 }
@@ -740,7 +740,7 @@ interface Employee {
   lastName: string;
   phoneNumber: string;
   nationalId?: string;
-  nationalID?: string;
+  nationalId?: string;
   age: number;
   electronicSignature?: string;
   email?: string;
