@@ -19,14 +19,6 @@ public class AuthService : IAuthService
         _config = config;
     }
 
-    public async Task<string> RegisterAsync(EmployeeDto dto)
-    {
-        var user = new AppUser { UserName = dto.UserName, FirstName = dto.FirstName, LastName = dto.LastName, NationalId = dto.NationalId, ElectronicSignature = dto.ElectronicSignature, PhoneNumber = dto.PhoneNumber };
-        var result = await _userManager.CreateAsync(user, dto.Password);
-        if (!result.Succeeded) return null;
-        return await GenerateJwtToken(user);
-    }
-
     public async Task<LoginResponseDto> LoginAsync(LoginDto dto)
     {
         var user = await _userManager.FindByNameAsync(dto.UserName);

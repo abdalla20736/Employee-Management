@@ -15,14 +15,6 @@ public class AuthController : ControllerBase
         _authService = authService;
     }
 
-    [HttpPost("register")]
-    public async Task<IActionResult> Register(EmployeeDto dto)
-    {
-        var token = await _authService.RegisterAsync(dto);
-        if (token == null) return BadRequest("User registration failed");
-        return Ok(new { token });
-    }
-
     [HttpPost("login")]
     public async Task<IActionResult> Login(LoginDto dto)
     {
