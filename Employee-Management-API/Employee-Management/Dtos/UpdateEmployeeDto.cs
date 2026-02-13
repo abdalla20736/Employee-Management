@@ -5,9 +5,8 @@ namespace Employee_Management.Models;
 
 public class UpdateEmployeeDto
 {
-
     [MinLength(4, ErrorMessage = "Username must be at least 4 characters")]
-    [UniqueUsername]
+
     public string? UserName { get; set; }
 
     [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z]).{8,}$",
@@ -22,11 +21,11 @@ public class UpdateEmployeeDto
 
     [Required(ErrorMessage = "Phone number is required")]
     [Phone]
-    public string PhoneNumber { get; set; }
+    public string PhoneNumber { get; set; } = null!;
 
     [Required(ErrorMessage = "National ID is required")]
     [RegularExpression(@"^\d{14}$", ErrorMessage = "National ID must be 14 digits")]
-    public string NationalId { get; set; }
+    public string NationalId { get; set; } = null!;
 
     [Range(18, 120)]
     public int Age { get; set; }

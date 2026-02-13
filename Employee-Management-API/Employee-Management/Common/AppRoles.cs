@@ -1,4 +1,4 @@
-﻿namespace Employee_Management.Models.Common;
+﻿namespace Employee_Management.Common;
 
 public static class AppRoles
 {

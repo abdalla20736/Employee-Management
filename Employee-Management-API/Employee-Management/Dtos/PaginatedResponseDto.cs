@@ -2,7 +2,7 @@
 
 namespace Employee_Management.Models;
 
-public class PaginatedResponse<T>
+public class PaginatedResponseDto<T>
 {
 
     public int Total { get; set; }

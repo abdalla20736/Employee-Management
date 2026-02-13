@@ -1,5 +1,5 @@
-﻿using Employee_Management.Entites;
-using Employee_Management.Models.Common;
+﻿using Employee_Management.Common;
+using Employee_Management.Entites;
 using Employee_Management.Services.AttendanceService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;

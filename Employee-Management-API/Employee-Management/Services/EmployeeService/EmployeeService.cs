@@ -1,6 +1,6 @@
 ﻿using Employee_Management.Entites;
 using Employee_Management.Models;
-using Employee_Management.Models.Common;
+using Employee_Management.Common;
 using Employee_Management.Repositories.EmployeeRepo;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -19,7 +19,7 @@ public class EmployeeService : IEmployeeService
     
     }
 
-    public async Task<string> AddEmployeeAsync(EmployeeDto dto)
+    public async Task<string> AddEmployeeAsync(CreateEmployeeDto dto)
     {
         var employee = await _employeeRepo.AddAsync(dto);
         if (employee)
@@ -29,7 +29,7 @@ public class EmployeeService : IEmployeeService
         return null;
     }
 
-    public async Task<PaginatedResponse<GetEmployeeDto>> GetAllEmployeesAsync(string search = null, string sortBy = null, bool ascending = true, int page = 1, int pageSize = 10)
+    public async Task<PaginatedResponseDto<GetEmployeeDto>> GetAllEmployeesAsync(string search = null, string sortBy = null, bool ascending = true, int page = 1, int pageSize = 10)
     {
         var (employeesQuery, totalCount) = await _employeeRepo.GetAllAsync(search, sortBy, ascending, page, pageSize);
 
@@ -52,7 +52,7 @@ public class EmployeeService : IEmployeeService
 
    
 
-        return new PaginatedResponse<GetEmployeeDto>
+        return new PaginatedResponseDto<GetEmployeeDto>
         {
             Total = totalCount,
             IsNextPage = totalCount > page * pageSize,

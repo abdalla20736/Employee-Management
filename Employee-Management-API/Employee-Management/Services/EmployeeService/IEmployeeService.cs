@@ -7,8 +7,8 @@ namespace Employee_Management.Services.EmployeeService;
 
 public interface IEmployeeService
 {
-    Task<string> AddEmployeeAsync(EmployeeDto dto);
-    Task<PaginatedResponse<GetEmployeeDto>> GetAllEmployeesAsync(string search = null, string sortBy = null, bool ascending = true, int page = 1, int pageSize = 10);
+    Task<string> AddEmployeeAsync(CreateEmployeeDto dto);
+    Task<PaginatedResponseDto<GetEmployeeDto>> GetAllEmployeesAsync(string search = null, string sortBy = null, bool ascending = true, int page = 1, int pageSize = 10);
     Task<GetEmployeeDto> GetEmployeeByIdAsync(string id);
     Task<string?> GetElectronicSigntureById(string id);
     Task<bool> DeleteEmployeeAsync(string id);

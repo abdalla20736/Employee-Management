@@ -1,6 +1,6 @@
 ﻿using Employee_Management.Data;
 using Employee_Management.Entites;
-using Employee_Management.Models.Common;
+using Employee_Management.Common;
 using Microsoft.EntityFrameworkCore;
 
 namespace Employee_Management.Repositories.AttendanceRepo;
@@ -48,6 +48,24 @@ public class AttendanceRepository : IAttendanceRepository
         return await _context.Attendances
             .Include(a => a.Employee)
             .Where(a => a.CheckInTime.Date == date.Date)
+            .ToListAsync();
+    }
+
+    public async Task<List<Attendance>> GetByEmployeeInRangeAsync(string employeeId, DateTime start, DateTime end)
+    {
+        return await _context.Attendances
+            .Include(a => a.Employee)
+            .Where(a => a.EmployeeId == employeeId && a.CheckInTime >= start && a.CheckInTime < end)
+            .OrderByDescending(a => a.CheckInTime)
+            .ToListAsync();
+    }
+
+    public async Task<List<Attendance>> GetAllInRangeAsync(DateTime start, DateTime end)
+    {
+        return await _context.Attendances
+            .Include(a => a.Employee)
+            .Where(a => a.CheckInTime >= start && a.CheckInTime < end)
+            .OrderByDescending(a => a.CheckInTime)
             .ToListAsync();
     }
 

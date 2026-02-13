@@ -6,6 +6,8 @@ using Employee_Management.Repositories.EmployeeRepo;
 using Employee_Management.Services.AttendanceService;
 using Employee_Management.Services.Auth;
 using Employee_Management.Services.EmployeeService;
+using Employee_Management.Validators;
+using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -77,6 +79,12 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IAttendanceRepository, AttendanceRepository>();
 
 
+    }
+
+    public static void AddValidators(this IServiceCollection services)
+    {
+        services.AddValidatorsFromAssemblyContaining<UpdateEmployeeDtoValidator>();
+        services.AddValidatorsFromAssemblyContaining<CreateEmployeeDtoValidator>();
     }
 
 }

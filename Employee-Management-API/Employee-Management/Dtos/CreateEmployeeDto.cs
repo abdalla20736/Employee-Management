@@ -1,15 +1,13 @@
-﻿using Employee_Management.Validators;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Employee_Management.Models;
 
-public class EmployeeDto
+public class CreateEmployeeDto
 {
     public string Id { get; set; } = Guid.NewGuid().ToString();
 
     [Required(ErrorMessage = "Username is required")]
     [MinLength(4, ErrorMessage = "Username must be at least 4 characters")]
-    [UniqueUsername]
     public string? UserName { get; set; }
 
     [Required(ErrorMessage = "Password is required")]

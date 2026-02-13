@@ -1,7 +1,7 @@
-﻿using Employee_Management.Data;
+﻿using Employee_Management.Common;
+using Employee_Management.Data;
 using Employee_Management.Entites;
 using Employee_Management.Models;
-using Employee_Management.Models.Common;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,7 +18,7 @@ public class EmployeeRepository : IEmployeeRepository
         _context = dbContext;
     }
 
-    public async Task<bool> AddAsync(EmployeeDto dto)
+    public async Task<bool> AddAsync(CreateEmployeeDto dto)
     {
         if (string.IsNullOrEmpty(dto.Password)) return false;
 

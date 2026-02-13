@@ -1,32 +1,38 @@
 using Employee_Management.Entites;
 using Employee_Management.Extensions;
+using Employee_Management.Models;
 using Microsoft.AspNetCore.Identity;
+using FluentValidation;
+using Employee_Management.Validators;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-
-
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.RegisterRepositories();
 builder.Services.RegisterServices();
 
+
 builder.Services.AddAuthorization();
 builder.Services.AddControllers();
+builder.Services.AddValidators();
+
 
 builder.Services.AddOpenApi();
 
-// Security !!!!
-// it's critical to keep [AllowAnyOrigin] Only For TESTING !!!!
+builder.Services.Configure<AttendanceSettings>(
+    builder.Configuration.GetRequiredSection("Attendance"));
+var allowedOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? [];
 
+// CORS (restricted)
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngular",
         policy =>
         {
             policy
-                .AllowAnyOrigin() // use WithOrigin(APIURL)
+                .WithOrigins(allowedOrigins)
                 .AllowAnyHeader()
                 .AllowAnyMethod();
         });

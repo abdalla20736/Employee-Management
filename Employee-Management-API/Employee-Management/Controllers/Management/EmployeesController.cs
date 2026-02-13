@@ -1,6 +1,6 @@
-﻿using Employee_Management.Entites;
+﻿using Employee_Management.Common;
+using Employee_Management.Entites;
 using Employee_Management.Models;
-using Employee_Management.Models.Common;
 using Employee_Management.Services.EmployeeService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -24,7 +24,7 @@ public class EmployeesController : ControllerBase
 
     [HttpPost]
     [Authorize(Roles = AppRoles.Admin)]
-    public async Task<IActionResult> Add([FromBody] EmployeeDto dto)
+    public async Task<IActionResult> Add([FromBody] CreateEmployeeDto dto)
     {
         if (!ModelState.IsValid) return BadRequest(ModelState);
         if (string.IsNullOrEmpty(dto.Password)) return BadRequest("Password is required");
